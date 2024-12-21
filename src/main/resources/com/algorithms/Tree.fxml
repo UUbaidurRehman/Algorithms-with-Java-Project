@@ -28,6 +28,7 @@
             <TextField fx:id="inputField" promptText="Enter node value" />
             <Button fx:id="insertButton" text="Insert Node" onAction="#insertNode"/>
             <Button fx:id="deleteButton" text="Delete Node" onAction="#deleteNode"/>
+            <Button fx:id="searchButton" text="Search" onAction="#searchNode" />
             <Button fx:id="inorderButton" text="Inorder Traversal" onAction="#inorderTraversal"/>
             <Button fx:id="preorderButton" text="Preorder Traversal" onAction="#preorderTraversal"/>
             <Button fx:id="postorderButton" text="Postorder Traversal" onAction="#postorderTraversal"/>

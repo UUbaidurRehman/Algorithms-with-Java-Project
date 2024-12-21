@@ -30,12 +30,6 @@
             <Button text="Sorting Algorithms" onAction="#openSortingScreen"/>
             <Button text="Tree Operations" onAction="#openTreeScreen"/>
         </VBox>
-        <!-- <VBox spacing="10" alignment="CENTER">
-            <Label text="Enter numbers to sort (comma-separated):" />
-            <TextField fx:id="inputField" promptText="Enter numbers here" />
-            <ComboBox fx:id="algorithmComboBox" />
-            <Button fx:id="sortButton" text="Sort" onAction="#sortNumbers"/>
-            <TextArea fx:id="resultArea" editable="false" wrapText="true" prefHeight="200" prefWidth="300"/>
-        </VBox> -->
+        
     </center>
 </BorderPane>

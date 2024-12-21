@@ -32,6 +32,8 @@ public class BinaryController {
     private Button postorderButton;  // Button for postorder traversal
     @FXML
     private TextArea resultArea;  // To display results
+    @FXML
+    private Button searchButton;  // Button for searching a node
 
     private BinarySearchTree bst;
 
@@ -119,6 +121,22 @@ public class BinaryController {
             showError("Invalid input! Please enter a valid integer.");
         } catch (IllegalArgumentException e) {
             showError(e.getMessage());
+        }
+    }
+
+
+    @FXML
+    public void searchNode(ActionEvent event) {
+        try {
+            int value = Integer.parseInt(inputField.getText());
+            boolean found = bst.search(value);
+            if (found) {
+                resultArea.setText("Node found: " + value);
+            } else {
+                resultArea.setText("Node not found: " + value);
+            }
+        } catch (NumberFormatException e) {
+            showError("Invalid input! Please enter a valid integer.");
         }
     }
 

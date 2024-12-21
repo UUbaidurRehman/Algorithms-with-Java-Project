@@ -2,8 +2,9 @@ package com.algorithms;
 
 import java.io.IOException;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -14,11 +15,6 @@ import javafx.scene.Parent;
 
 
 import javafx.scene.Scene;
-import javafx.fxml.FXMLLoader;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 import javafx.stage.Stage;
 
 // public class PrimaryController {
@@ -52,6 +48,17 @@ public class PrimaryController {
     }
     
 }
+
+
+
+
+
+
+
+
+
+
+
 // ---------------------------------------
 // package com.algorithms;
 
