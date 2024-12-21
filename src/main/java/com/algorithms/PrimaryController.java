@@ -29,68 +29,30 @@ import javafx.stage.Stage;
 //     }
 // }
 
+import javafx.scene.Node;
+
 public class PrimaryController {
+    // private Stage stage;
 
     @FXML
-    private TextField inputField;  // To input numbers
-    @FXML
-    private ComboBox<String> algorithmComboBox;  // To select sorting algorithm
-    @FXML
-    private Button sortButton;  // Button to trigger sorting
-    @FXML
-    private TextArea resultArea;  // To display sorted results
-
-    public void initialize() {
-        algorithmComboBox.getItems().addAll("Bubble Sort", "Merge Sort", "Quick Sort", "Selection Sort", "Insertion Sort");
+    private void openSortingScreen(javafx.event.ActionEvent event) throws Exception {
+        switchScene("Sorting.fxml", event);
     }
 
     @FXML
-    public void sortNumbers(ActionEvent event) {
-        try {
-            // Get input and convert it to a list of integers
-            String input = inputField.getText();
-            List<Integer> numbers = Arrays.stream(input.split(","))
-                                          .map(String::trim)
-                                          .map(Integer::parseInt)
-                                          .collect(Collectors.toList());
-
-            // Get selected sorting algorithm
-            String selectedAlgorithm = algorithmComboBox.getValue();
-
-            // Sort based on the selected algorithm
-            switch (selectedAlgorithm) {
-                case "Bubble Sort":
-                    SortingAlgorithms.bubbleSort(numbers);
-                    break;
-                case "Merge Sort":
-                    SortingAlgorithms.mergeSort(numbers);
-                    break;
-                case "Quick Sort":
-                    SortingAlgorithms.quickSort(numbers, 0, numbers.size() - 1);
-                    break;
-                case "Selection Sort":
-                    SortingAlgorithms.selectionSort(numbers);
-                    break;
-                case "Insertion Sort":
-                    SortingAlgorithms.insertionSort(numbers);
-                    break;
-            }
-
-            // Display sorted result
-            resultArea.setText(numbers.toString());
-        } catch (Exception e) {
-            showError("Invalid input! Please enter numbers separated by commas.");
-        }
+    private void openTreeScreen(javafx.event.ActionEvent event) throws Exception {
+        switchScene("Tree.fxml", event);
     }
 
-    private void showError(String message) {
-        Alert alert = new Alert(AlertType.ERROR);
-        alert.setTitle("Input Error");
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
+    private void switchScene(String fxml, javafx.event.ActionEvent event) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource(fxml));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
+    
 }
+// ---------------------------------------
 // package com.algorithms;
 
 // import javafx.fxml.FXML;

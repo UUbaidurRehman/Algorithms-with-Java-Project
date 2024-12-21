@@ -1,0 +1,20 @@
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.algorithms.SortingController">
+    <!-- <top>
+        <Label text="Enter numbers to sort (comma-separated):" />
+    </top> -->
+    <center>
+        
+        <VBox spacing="10" alignment="CENTER">
+            <Label text="Enter numbers to sort (comma-separated):" />
+            <TextField fx:id="inputField" promptText="Enter numbers here" />
+            <ComboBox fx:id="algorithmComboBox" />
+            <Button fx:id="sortButton" text="Sort" onAction="#sortNumbers"/>
+            <TextArea fx:id="resultArea" editable="false" wrapText="true" prefHeight="200" prefWidth="300"/>
+            <Button text="Back" onAction="#goBackToPrimary" />
+        </VBox>
+    </center>
+</BorderPane>
