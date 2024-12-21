@@ -1,5 +1,6 @@
 package com.algorithms;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SortingAlgorithms {
@@ -23,16 +24,19 @@ public class SortingAlgorithms {
     public static void mergeSort(List<Integer> arr) {
         if (arr.size() > 1) {
             int mid = arr.size() / 2;
-            List<Integer> left = arr.subList(0, mid);
-            List<Integer> right = arr.subList(mid, arr.size());
 
+            // Create new lists for left and right halves
+            List<Integer> left = new ArrayList<>(arr.subList(0, mid));
+            List<Integer> right = new ArrayList<>(arr.subList(mid, arr.size()));
+
+            // Recursively sort each half
             mergeSort(left);
             mergeSort(right);
 
+            // Merge the sorted halves
             merge(arr, left, right);
         }
     }
-
     private static void merge(List<Integer> arr, List<Integer> left, List<Integer> right) {
         int i = 0, j = 0, k = 0;
 
@@ -51,6 +55,7 @@ public class SortingAlgorithms {
             arr.set(k++, right.get(j++));
         }
     }
+
 
     // Quick Sort
     public static void quickSort(List<Integer> arr, int low, int high) {
