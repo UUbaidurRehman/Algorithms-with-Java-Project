@@ -1,5 +1,8 @@
 package com.algorithms;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BinarySearchTree {
     static class Node {
         int value;
@@ -17,8 +20,11 @@ public class BinarySearchTree {
         root = null;
     }
 
-    // Create BST (Insert)
+    // Insert method with duplicate check
     public void insert(int value) {
+        if (search(value)) {
+            throw new IllegalArgumentException("Node with value " + value + " already exists in the tree.");
+        }
         root = insertRec(root, value);
     }
 
@@ -37,8 +43,11 @@ public class BinarySearchTree {
         return root;
     }
 
-    // Delete a node
+    // Delete method with error handling
     public void delete(int value) {
+        if (!search(value)) {
+            throw new IllegalArgumentException("Node with value " + value + " does not exist in the tree.");
+        }
         root = deleteRec(root, value);
     }
 
@@ -78,46 +87,63 @@ public class BinarySearchTree {
         return minValue;
     }
 
-    // Traversals
-    public void inorder() {
-        inorderRec(root);
+    // Search method
+    public boolean search(int value) {
+        return searchRec(root, value);
     }
 
-    private void inorderRec(Node root) {
+    private boolean searchRec(Node root, int value) {
+        if (root == null) {
+            return false;
+        }
+
+        if (value == root.value) {
+            return true;
+        }
+
+        return value < root.value ? searchRec(root.left, value) : searchRec(root.right, value);
+    }
+
+    // Traversal methods returning results as a list
+    public List<Integer> inorder() {
+        List<Integer> result = new ArrayList<>();
+        inorderRec(root, result);
+        return result;
+    }
+
+    private void inorderRec(Node root, List<Integer> result) {
         if (root != null) {
-            inorderRec(root.left);
-            System.out.print(root.value + " ");
-            inorderRec(root.right);
+            inorderRec(root.left, result);
+            result.add(root.value);
+            inorderRec(root.right, result);
         }
     }
 
-    public void preorder() {
-        preorderRec(root);
+    public List<Integer> preorder() {
+        List<Integer> result = new ArrayList<>();
+        preorderRec(root, result);
+        return result;
     }
 
-    private void preorderRec(Node root) {
+    private void preorderRec(Node root, List<Integer> result) {
         if (root != null) {
-            System.out.print(root.value + " ");
-            preorderRec(root.left);
-            preorderRec(root.right);
+            result.add(root.value);
+            preorderRec(root.left, result);
+            preorderRec(root.right, result);
         }
     }
 
-    public void postorder() {
-        postorderRec(root);
+    public List<Integer> postorder() {
+        List<Integer> result = new ArrayList<>();
+        postorderRec(root, result);
+        return result;
     }
 
-    private void postorderRec(Node root) {
+    private void postorderRec(Node root, List<Integer> result) {
         if (root != null) {
-            postorderRec(root.left);
-            postorderRec(root.right);
-            System.out.print(root.value + " ");
+            postorderRec(root.left, result);
+            postorderRec(root.right, result);
+            result.add(root.value);
         }
-    }
-
-    // Modify (example: find a node and update its value)
-    public void modify(int oldValue, int newValue) {
-        delete(oldValue);
-        insert(newValue);
     }
 }
